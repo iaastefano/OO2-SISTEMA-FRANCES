@@ -8,7 +8,7 @@ public class TestEliminarPrestamo {
 	public static void main(String[] args) {
 		PrestamoABM abmPrestamo = new PrestamoABM();
 		try {
-			long idPrestamo = 7;
+			long idPrestamo = 2;
 			abmPrestamo.eliminar(idPrestamo);
 			System.out.println("Eliminar Prestamo --> " + idPrestamo);
 		} catch (Exception e) {

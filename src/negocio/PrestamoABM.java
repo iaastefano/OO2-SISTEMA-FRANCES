@@ -35,17 +35,15 @@ public class PrestamoABM {
 	}
 
 	public void modificar(Prestamo p) throws Exception{
-		String mensaje = "";
-		Prestamo pAux = dao.traerPrestamo(p.getIdPrestamo());
-		if(pAux!=null && !p.equals(pAux))
+		try
 		{
-			mensaje = "El id " + p.getIdPrestamo() + " del prestamo que quiere modificar, ya esta asignado a otro prestamo";
-		}
-		if (!mensaje.isEmpty())
+			dao.modificar(p);
+		}	
+		catch(Exception ex)
 		{
-			throw new Exception(mensaje);
+			throw new Exception("El prestamo " + p.toString() + " no se pudo modificar.");
 		}
-		dao.modificar(p);
+		
 	}
 
 	public void eliminar(long idPrestamo) throws Exception { 

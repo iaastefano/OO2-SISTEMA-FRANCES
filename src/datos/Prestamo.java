@@ -1,6 +1,8 @@
 package datos;
 
 import java.util.GregorianCalendar;
+import java.util.Set;
+
 import funciones.Funciones;
 
 public class Prestamo {
@@ -9,7 +11,9 @@ public class Prestamo {
 	private double monto;
 	private double interes;
 	private int cantCuotas;
+	private boolean cancelado;
 	private Cliente cliente;
+	private Set<Cuota> cuotas;
 	
 	public Prestamo()
 	{
@@ -43,6 +47,14 @@ public class Prestamo {
 
 	public double getMonto() {
 		return monto;
+	}
+
+	public Set<Cuota> getCuotas() {
+		return cuotas;
+	}
+
+	public void setCuotas(Set<Cuota> cuotas) {
+		this.cuotas = cuotas;
 	}
 
 	public void setMonto(double monto) {
@@ -79,5 +91,9 @@ public class Prestamo {
 				+ ", cantCuotas=" + cantCuotas + ", cliente=" + cliente + "]";
 	}
 	
+	public void setCuotas()
+	{
+		
+	}
 	
 }

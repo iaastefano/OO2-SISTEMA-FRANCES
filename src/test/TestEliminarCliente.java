@@ -9,7 +9,7 @@ public class TestEliminarCliente {
 	public static void main(String[] args) {
 		ClienteABM abmCliente = new ClienteABM();
 		try {
-			long idCliente = 7;
+			long idCliente = 8;
 			abmCliente.eliminar(idCliente);
 			System.out.println("Eliminar Cliente --> " + idCliente);
 		} catch (Exception e) {
