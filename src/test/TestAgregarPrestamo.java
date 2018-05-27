@@ -11,10 +11,10 @@ public class TestAgregarPrestamo {
 		PrestamoABM abmPrestamo = new PrestamoABM();
 		try {
 			GregorianCalendar fecha = new GregorianCalendar(2018,5,23);
-			double monto = 50000;
-			double interes = 10;
+			double monto = 10000;
+			double interes = 0.1;
 			int cantCuotas = 12;
-			int dni = 35000001;
+			int dni = 14000000;
 			Cliente cliente = abmCliente.traerCliente(dni); 
 			long ultimoIdPrestamo = abmPrestamo.agregar(fecha, monto, interes, cantCuotas, cliente);
 			System.out.println("Agregar Prestamo--> " + ultimoIdPrestamo);

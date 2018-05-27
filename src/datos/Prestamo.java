@@ -1,7 +1,15 @@
 package datos;
 
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
+import java.util.Locale;
 import java.util.Set;
+import java.util.HashSet;
+import java.util.TimeZone;
+import java.util.TreeSet;
 
 import funciones.Funciones;
 
@@ -20,6 +28,14 @@ public class Prestamo {
 		
 	}
 	
+	public boolean isCancelado() {
+		return cancelado;
+	}
+
+	public void setCancelado(boolean cancelado) {
+		this.cancelado = cancelado;
+	}
+
 	public Prestamo(GregorianCalendar fecha, double monto, double interes, int cantCuotas, Cliente cliente) {
 		super();
 		this.fecha = fecha;
@@ -27,6 +43,8 @@ public class Prestamo {
 		this.interes = interes;
 		this.cantCuotas = cantCuotas;
 		this.cliente = cliente;
+		this.cancelado = false;
+		this.setCuotas();
 	}
 
 	public long getIdPrestamo() {
@@ -93,7 +111,32 @@ public class Prestamo {
 	
 	public void setCuotas()
 	{
-		
+		int nroCuota;
+		GregorianCalendar fechaVencimiento = this.fecha;
+		double saldoPendiente = this.monto;
+		double amortizacion;
+		double interesCuota;
+		double cuota;
+		double deuda;
+		for(int i = 1; i <= this.cantCuotas; i++)
+		{
+			cuotas = new HashSet<Cuota>();
+			nroCuota = i;
+			fechaVencimiento = fecha;
+			fechaVencimiento.add(Calendar.MONTH, i);
+			while(!Funciones.esDiaHabil(fechaVencimiento))
+			{
+				fechaVencimiento.add(Calendar.DATE, 1);
+			}
+			amortizacion = (saldoPendiente * this.interes) / (Math.pow(1 + this.interes, this.cantCuotas + 1 - i) - 1);
+			interesCuota = saldoPendiente * this.interes;
+			cuota = amortizacion + interesCuota;
+			deuda = saldoPendiente - amortizacion;
+			saldoPendiente = saldoPendiente - amortizacion;
+			Cuota c = new Cuota(nroCuota, fechaVencimiento, saldoPendiente, amortizacion,
+					interesCuota, cuota, deuda, this);
+			cuotas.add(c);
+		}
 	}
 	
 }

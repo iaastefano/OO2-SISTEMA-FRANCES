@@ -15,7 +15,34 @@ public class Cuota {
 	private boolean cancelada;
 	private GregorianCalendar fechaDePago;
 	private double punitorios;
+	private Prestamo prestamo;
 	
+	public Cuota() {
+	}
+	
+	public Cuota(int nroCuota, GregorianCalendar fechaVencimiento, double saldoPendiente, double amortizacion,
+			double interesCuota, double cuota, double deuda, Prestamo prestamo) {
+		super();
+		this.nroCuota = nroCuota;
+		this.fechaVencimiento = fechaVencimiento;
+		this.saldoPendiente = saldoPendiente;
+		this.amortizacion = amortizacion;
+		this.interesCuota = interesCuota;
+		this.cuota = cuota;
+		this.deuda = deuda;
+		this.cancelada = false;
+		this.fechaDePago = null;
+		this.punitorios = 0;
+		this.prestamo = prestamo;
+	}
+	public Prestamo getPrestamo() {
+		return prestamo;
+	}
+
+	public void setPrestamo(Prestamo prestamo) {
+		this.prestamo = prestamo;
+	}
+
 	public long getIdCuota() {
 		return idCuota;
 	}
@@ -82,22 +109,17 @@ public class Cuota {
 	public void setPunitorios(double punitorios) {
 		this.punitorios = punitorios;
 	}
-	public Cuota(int nroCuota, GregorianCalendar fechaVencimiento, double saldoPendiente, double amortizacion,
-			double interesCuota, double cuota, double deuda, boolean cancelada, GregorianCalendar fechaDePago,
-			double punitorios) {
-		super();
-		this.nroCuota = nroCuota;
-		this.fechaVencimiento = fechaVencimiento;
-		this.saldoPendiente = saldoPendiente;
-		this.amortizacion = amortizacion;
-		this.interesCuota = interesCuota;
-		this.cuota = cuota;
-		this.deuda = deuda;
-		this.cancelada = cancelada;
-		this.fechaDePago = fechaDePago;
-		this.punitorios = punitorios;
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cuota other = (Cuota) obj;
+		return other.getNroCuota() == this.getNroCuota() && other.getPrestamo().getIdPrestamo() == this.getPrestamo().getIdPrestamo();
 	}
-	
-	
 	
 }

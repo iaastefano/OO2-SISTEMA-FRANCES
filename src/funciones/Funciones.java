@@ -2,8 +2,12 @@ package funciones;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class Funciones {
+	
+	
+	
 	public static boolean esBisiesto(int anio) {
 		return (anio % 400 == 0) || ((anio % 4 == 0) && (anio % 100 != 0));
 	}
